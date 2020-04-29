@@ -1,0 +1,206 @@
+@use 'sass:meta';
+@use 'sass:string';
+@use 'sass:math';
+@use './functions' as fn;
+
+@mixin fill() {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: auto;
+  top: 0;
+  bottom: auto;
+  position: absolute;
+}
+
+@mixin pos(
+  $horizontal: 0,
+  $vertical: 0,
+  $fromRight: false,
+  $fromBottom: false,
+  $position: absolute
+) {
+  position: $position;
+
+  @if $fromRight {
+    left: auto;
+    @if meta.type-of($horizontal) == number and math.is-unitless($horizontal) {
+      right: $horizontal * $sizeFactor * 1vw;
+    }
+    @else {
+      right: $horizontal;
+    }
+  }
+  @else {
+    right: auto;
+    @if meta.type-of($horizontal) == number and math.is-unitless($horizontal) {
+      left: $horizontal * $sizeFactor * 1vw;
+    }
+    @else {
+      left: $horizontal;
+    }
+  }
+
+  @if $fromBottom {
+    top: auto;
+    @if meta.type-of($vertical) == number and math.is-unitless($vertical) {
+      bottom: $vertical * $sizeFactor * 1vw;
+    }
+    @else {
+      bottom: $vertical;
+    }
+  }
+  @else {
+    bottom: auto;
+    @if meta.type-of($vertical) == number and math.is-unitless($vertical) {
+      top: $vertical * $sizeFactor * 1vw;
+    }
+    @else {
+      top: $vertical;
+    }
+  }
+}
+
+@mixin geo(
+  $width,
+  $height: false,
+  $horizontal: 0,
+  $vertical: 0,
+  $fromRight: false,
+  $fromBottom: false,
+  $position: absolute
+) {
+  position: $position;
+
+  @if meta.type-of($width) == number and math.is-unitless($width) {
+    width: $width * $sizeFactor * 1vw;
+  }
+  @else {
+    width: $width;
+  }
+
+  @if $height {
+    @if meta.type-of($height) == number and math.is-unitless($height) {
+      height: $height * $sizeFactor * 1vw;
+    }
+    @else {
+      height: $height;
+    }
+  }
+  @else {
+    height: auto;
+  }
+  @include pos($horizontal, $vertical, $fromRight, $fromBottom, $position);
+}
+
+@mixin center($horizontal: true, $vertical: true) {
+  position: absolute;
+
+  @if ($horizontal and $vertical) {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  @else if ($horizontal) {
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  @else if ($vertical) {
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+}
+
+@mixin keyframes($animationName) {
+  @-webkit-keyframes #{$animationName} {
+    @content;
+  }
+
+  @-moz-keyframes #{$animationName} {
+    @content;
+  }
+
+  @-o-keyframes #{$animationName} {
+    @content;
+  }
+
+  @keyframes #{$animationName} {
+    @content;
+  }
+}
+
+@mixin animate($name, $duration, $iteration, $function, $direction, $fillMode) {
+  @if meta.type-of($name) != string {
+    $name: fn.to-string($name);
+  };
+  @if meta.type-of($duration) != string {
+    $duration: fn.to-string($duration);
+  };
+  @if meta.type-of($iteration) != string {
+    $iteration: fn.to-string($iteration);
+  };
+  @if meta.type-of($function) != string {
+    $function: fn.to-string($function);
+  };
+  @if meta.type-of($direction) != string {
+    $direction: fn.to-string($direction);
+  };
+  @if meta.type-of($fillMode) != string {
+    $fillMode: fn.to-string($fillMode);
+  };
+  -webkit-animation-name: string.unquote($name);
+  -moz-animation-name: string.unquote($name);
+  -o-animation-name: string.unquote($name);
+  animation-name: string.unquote($name);
+  -webkit-animation-duration: string.unquote($duration);
+  -moz-animation-duration: string.unquote($duration);
+  -o-animation-duration: string.unquote($duration);
+  animation-duration: string.unquote($duration);
+  -webkit-animation-iteration-count: string.unquote($iteration);
+  -moz-animation-iteration-count: string.unquote($iteration);
+  -o-animation-iteration-count: string.unquote($iteration);
+  animation-iteration-count: string.unquote($iteration);
+  -webkit-animation-timing-function: string.unquote($function);
+  -moz-animation-timing-function: string.unquote($function);
+  -o-animation-timing-function: string.unquote($function);
+  animation-timing-function: string.unquote($function);
+  -webkit-animation-direction: string.unquote($direction);
+  -moz-animation-direction: string.unquote($direction);
+  -o-animation-direction: string.unquote($direction);
+  animation-direction: string.unquote($direction);
+  -webkit-animation-fill-mode: string.unquote($fillMode);
+  -moz-animation-fill-mode: string.unquote($fillMode);
+  -o-animation-fill-mode: string.unquote($fillMode);
+  animation-fill-mode: string.unquote($fillMode);
+}
+
+@mixin layout-highlight {
+  * { background-color: rgba(255, 0, 0, .2); }
+  * * { background-color: rgba(0, 255, 0, .2); }
+  * * * { background-color: rgba(0, 0, 255, .2); }
+  * * * * { background-color: rgba(255, 0, 255, .2); }
+  * * * * * { background-color: rgba(0, 255, 255, .2); }
+  * * * * * * { background-color: rgba(255, 255, 0, .2); }
+  * * * * * * * { background-color: rgba(255, 0, 0, .2); }
+  * * * * * * * * { background-color: rgba(0, 255, 0, .2); }
+  * * * * * * * * * { background-color: rgba(0, 0, 255, .2); }
+}
+
+// example includes:
+// @include keyframes(pulse) {
+//     0% {
+//         transform: translateX(-20%);
+//     }
+
+//     50% {
+//         transform: translateX(-60%);
+//     }
+
+//     100% {
+//         transform: translateX(-20%);
+//     }
+// }
+// @include animate(pulse, 1s, infinite, ease-in-out, normal, none);
+// @include animate("pulse, pulse2", "1s, 2s", "infinite, infinite", "ease-in-out, linear", "normal, alternate", "none, forwards");

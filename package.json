@@ -1,0 +1,58 @@
+{
+  "name": "gulp4-starter",
+  "version": "1.0.0",
+  "authors": [
+    "Robert Górnicki"
+  ],
+  "scripts": {
+    "start": "gulp --rg-server --rg-debug --rg-env development",
+    "dev": "gulp --rg-server --rg-debug --rg-env development",
+    "html": "gulp run-html --rg-env development",
+    "styles": "gulp run-styles --rg-env development",
+    "scripts": "gulp run-scripts --rg-env development",
+    "build": "gulp build --rg-env production",
+    "https": "gulp --rg-server --rg-https --rg-debug --rg-env development"
+  },
+  "description": "Gulp v4 starter",
+  "main": "Gulpfile.js",
+  "private": true,
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "autoprefixer": "^9.7.6",
+    "browser-sync": "^2.26.7",
+    "chalk": "^4.0.0",
+    "cssnano": "^4.1.10",
+    "del": "^5.1.0",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-if": "^3.0.0",
+    "gulp-postcss": "^8.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-replace": "^1.0.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-tap": "^2.0.0",
+    "gulp-uglify": "^3.0.2",
+    "lazypipe": "^1.0.2",
+    "merge-stream": "^2.0.0",
+    "minimist": "^1.2.5",
+    "readable-stream": "^3.6.0",
+    "sass": "^1.26.5",
+    "slash": "^3.0.0"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "chrome >= 38",
+    "safari >= 9",
+    "iOS >= 9",
+    "firefox >= 50",
+    "Opera >= 40",
+    "Edge >= 12",
+    "not IE <= 10"
+  ],
+  "dependencies": {
+    "smoothscroll-polyfill": "^0.4.4"
+  }
+}
