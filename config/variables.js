@@ -21,10 +21,17 @@ const OPTS = parseArgs(process.argv.slice(2), {
     'rg-vhost': 'vhost'
   }
 });
-if (OPTS.useHttps) OPTS.useServer = true;
 
+let protocol = 'http';
+if (OPTS.useHttps) {
+  OPTS.useServer = true;
+  protocol = 'https';
+}
+
+// relative paths
 // let BASE_URL = null;
-let BASE_URL = `${OPTS.useHttps ? 'https' : 'http'}://127.0.0.1:3000/`;
+// absolute paths
+let BASE_URL = OPTS.debugMode ? `${protocol}://127.0.0.1:3000/` : '/';
 
 let USE_ROOT_PATHS = null;
 if (BASE_URL === null) {

@@ -17,8 +17,8 @@
   "main": "Gulpfile.js",
   "private": true,
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.5",
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
     "autoprefixer": "^9.7.6",
     "browser-sync": "^2.26.7",
     "chalk": "^4.0.0",

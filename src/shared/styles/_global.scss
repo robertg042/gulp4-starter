@@ -29,8 +29,16 @@ header {
   }
 }
 
+main {
+  text-align: center;
+}
+
 img {
   user-select: none;
+}
+
+h2 {
+  margin: 30px 0 0 0;
 }
 
 .greeting {
@@ -38,11 +46,8 @@ img {
 }
 
 .gulp-logo {
-  text-align: center;
-  margin: 100px 0;
-  &> img {
-    max-width: 100px;
-  }
+  margin: 10px 0;
+  max-width: 100px;
 }
 
 .js-logo {
@@ -50,5 +55,5 @@ img {
   background-position: center center;
   background-size: auto 100%;
   background-repeat: no-repeat;
-  margin-top: 100px;
+  margin-top: 20px;
 }
