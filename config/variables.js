@@ -29,9 +29,9 @@ if (OPTS.useHttps) {
 }
 
 // relative paths
-// let BASE_URL = null;
+let BASE_URL = null;
 // absolute paths
-let BASE_URL = OPTS.debugMode ? `${protocol}://127.0.0.1:3000/` : '/';
+// let BASE_URL = OPTS.debugMode ? `${protocol}://127.0.0.1:3000/` : '/';
 
 let USE_ROOT_PATHS = null;
 if (BASE_URL === null) {

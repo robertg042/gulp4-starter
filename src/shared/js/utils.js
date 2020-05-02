@@ -6,3 +6,6 @@ const sayHi = function(name, page) {
     greetingElement.textContent = greeting;
   }
 };
+const id = id => document.getElementById(id);
+const qs = sel => document.querySelector(sel);
+const qsa = sel => [].slice.call(document.querySelectorAll(sel));
